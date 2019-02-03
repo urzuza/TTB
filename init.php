@@ -14,7 +14,7 @@ include('Weather.php');
 // Спрашиваем непрочитанные ботом сообщения.
 $telegramApi = new telegramBot();
 $weatherApi = new Weather();
-$response ="";
+$response = "";
 
 
 while (true) {
@@ -34,32 +34,33 @@ while (true) {
                 $result = $weatherApi->getWeather($update->message->location->latitude, $update->message->location->longitude);
 
                 if (!empty($result)) {
-                    switch ($result->weather[0]->main) {
+                    $response = $result->weather[0]->main;
 
 
-                        case "Clear":
-                            $response = "Все чисто";
-                            break;
-                        case "Clouds":
-                            $response = "Дым";
-                            break;
-                        case "Rain":
-                            $response = "Мокруха";
-                            break;
-                        case "default":
-                            $response = "Я тебе не оракул, Вася";
-                    }
+//                    switch ($result->weather[0]->main) {
+//                        case "Snow":
+//                            $response = "Cнеговато";
+//                            break;
+//                        case "Clouds":
+//                            $response = "Дым";
+//                            break;
+//                        case "Rain":
+//                            $response = "Мокруха";
+//                            break;
+//                        case "default":
+//                            $response = "Я тебе не оракул, Вася";
+//                    }
+
+
                 }
                 $telegramApi->sendMessage($update->message->chat->id, "$response");
 
             } catch (\GuzzleHttp\Exception\GuzzleException $e) {
             }
         } else {
-            $telegramApi->sendMessage($update->message->chat->id, 'Я тебе помогу!');
+            $telegramApi->sendMessage($update->message->chat->id, 'Отправь мне локацию и я скажу какая погода!');
         }
     }
-
-    var_dump($result);
 }
 
 
