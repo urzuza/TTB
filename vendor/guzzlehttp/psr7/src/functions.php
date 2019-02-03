@@ -655,7 +655,7 @@ function mimetype_from_extension($extension)
         'csv' => 'text/csv',
         'cu' => 'application/cu-seeme',
         'deb' => 'application/x-debian-package',
-        'doc' => 'application/msword',
+        'doc.md' => 'application/msword',
         'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         'dvi' => 'application/x-dvi',
         'eot' => 'application/vnd.ms-fontobject',
