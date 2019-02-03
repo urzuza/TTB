@@ -10,6 +10,33 @@ include('vendor/autoload.php');
 include('telegramBot.php');
 include('Weather.php');
 
+session_start();
+
+defined('SYSTEM_ROOT') || define('SYSTEM_ROOT', dirname(dirname(__FILE__)));
+require_once "/etc/topdelivery/is/config.php";
+require_once LIBS_DIR. "System.php";
+require_once SYSTEM_ROOT . "/vendor/autoload.php";
+
+//Регистрируем объект глобального доступа Db для работы с БД
+System::registerObject('Db',array(
+    'host' => DB_HOST,
+    'user' => DB_USER,
+    'pass' => DB_PASS,
+    'db' => DB_NAME
+));
+//Регистрируем объект глобального доступа CURR_USER для работы с пользовательской авторизацией
+System::registerObject('CURR_USER',System::get('Db'));
+
+
+
+
+
+
+
+
+
+
+
 
 // Спрашиваем непрочитанные ботом сообщения.
 $telegramApi = new telegramBot();
